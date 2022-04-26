@@ -1,0 +1,158 @@
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.calendar {
+  width: 70rem;
+  -webkit-box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
+  margin: 1rem 20%;
+}
+
+.month {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 5rem;
+  background-color: gray;
+  text-align: center;
+}
+
+.month h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+.month p {
+  font-size: 1.6rem;
+}
+
+.month .icon {
+  width: 2rem;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: red;
+  cursor: pointer;
+}
+
+.month svg {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.month .date {
+  margin-top: 5px;
+  -ms-flex-preferred-size: 35%;
+      flex-basis: 35%;
+  background-color: transparent;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+.month .date.active {
+  background-color: white;
+}
+
+.month .date.active h2 {
+  color: red;
+}
+
+.month .next-icon {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.weekdays {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-top: 1px solid gray;
+  height: 5rem;
+}
+
+.weekdays div {
+  width: calc(70rem / 7);
+  text-align: center;
+}
+
+.days {
+  background-color: gray;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.days div {
+  width: calc(70rem / 7);
+  height: 10rem;
+  padding: 5px 5px;
+  text-align: left;
+  background-color: white;
+  border: 1px solid gray;
+  border-right: none;
+  cursor: pointer;
+}
+
+.days div:hover {
+  opacity: 0.5;
+  background-color: #aeae43;
+}
+
+.prev-date,
+.next-date {
+  opacity: 0.5;
+  background-color: transparent;
+}
+
+.divAcitive {
+  background-color: red;
+}
+
+.divFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+/*# sourceMappingURL=all.css.map */
