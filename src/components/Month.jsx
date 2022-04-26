@@ -6,15 +6,22 @@ const Month = ({ currentDate, setCurrentDate }) => {
     const years = currentDate.split("/")[0];
     const months = currentDate.split("/")[1];
     let numMonth = parseInt(months);
+    let numYears = parseInt(years);
     switch (dealState) {
       case "prev":
         if (numMonth > 1) {
           numMonth -= 1;
+        } else {
+          numYears -= 1;
+          numMonth = 12;
         }
         break;
       case "next":
         if (numMonth < 12) {
           numMonth += 1;
+        } else {
+          numYears += 1;
+          numMonth = 1;
         }
         break;
       default:
@@ -26,7 +33,7 @@ const Month = ({ currentDate, setCurrentDate }) => {
     } else {
       strMonth = numMonth;
     }
-    setCurrentDate(`${years}/${strMonth}`);
+    setCurrentDate(`${numYears}/${strMonth}`);
   };
   const handlePrevMonth = () => {
     dealPrevOrNext("prev");

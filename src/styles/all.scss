@@ -70,12 +70,14 @@ html {
   display: flex;
   width: 100%;
   align-items: center;
-  border-top: 1px solid gray;
+
   border-bottom: 1px solid rgb(207, 205, 205);
-  height: 5rem;
+  padding: 5px 0;
   & div {
     width: calc(70rem / 7);
     text-align: center;
+    font-weight: bold;
+    font-size: 14px;
   }
 }
 .days {
@@ -88,14 +90,12 @@ html {
     min-height: 93px;
     background-color: white;
     border: 1px solid rgb(194, 191, 191);
-
     border-top: transparent 1px solid;
     border-right: transparent 1px solid;
-
     cursor: pointer;
     &:hover {
       opacity: 0.5;
-      background-color: rgb(244, 244, 123);
+      background-color: #fff9e3;
     }
   }
 }
@@ -115,9 +115,13 @@ html {
   align-items: flex-start;
   &.active {
     border: 2px solid green;
+    background-color: #fff9e3;
   }
   & p {
     padding: 2px 2px;
+  }
+  &:nth-child(1) {
+    background-color: red;
   }
 }
 .order {

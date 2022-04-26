@@ -98,14 +98,15 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-top: 1px solid gray;
   border-bottom: 1px solid #cfcdcd;
-  height: 5rem;
+  padding: 5px 0;
 }
 
 .weekdays div {
   width: calc(70rem / 7);
   text-align: center;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .days {
@@ -130,7 +131,7 @@ html {
 
 .days div:hover {
   opacity: 0.5;
-  background-color: #f4f47b;
+  background-color: #fff9e3;
 }
 
 .days div.prev-date,
@@ -160,10 +161,15 @@ html {
 
 .days div.divFlex.active {
   border: 2px solid green;
+  background-color: #fff9e3;
 }
 
 .days div.divFlex p {
   padding: 2px 2px;
+}
+
+.days div.divFlex:nth-child(1) {
+  background-color: red;
 }
 
 .order {

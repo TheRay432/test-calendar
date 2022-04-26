@@ -10,50 +10,36 @@ function App() {
   const [nextArr, setNextArr] = useState(null);
   const [currentDate, setCurrentDate] = useState("2017/05");
 
-  const dealPrevOrNext = (dealState) => {
-    const years = currentDate.split("/")[0];
-    const months = currentDate.split("/")[1];
-    let numMonth = parseInt(months);
-    switch (dealState) {
-      case "prev":
-        if (numMonth > 1) {
-          numMonth -= 1;
-        }
-        break;
-      case "next":
-        if (numMonth < 12) {
-          numMonth += 1;
-        }
-        break;
-      default:
-        break;
-    }
-    let strMonth = "";
-    if (numMonth < 10) {
-      strMonth = "0" + numMonth;
-    } else {
-      strMonth = numMonth;
-    }
-    setCurrentDate(`${years}/${strMonth}`);
-  };
   const getDateData = async () => {
     const years = currentDate.split("/")[0];
     const months = currentDate.split("/")[1];
 
     const numMonth = parseInt(months) - 1;
     const res = await axios.get("data1.json");
-    const data = res.data;
-    const fileterData = data.filter((item) => {
+    const { data } = res;
+    const result = data.map((o) => {
+      if (o.state) {
+        return {
+          guaranteed: o.certain,
+          date: o.date,
+          price: o.price,
+          availableVancancy: o.onsell,
+          totalVacnacy: o.total,
+          status: o.state,
+        };
+      } else {
+        return o;
+      }
+    });
+    const fileterData = result.filter((item) => {
       return item.date.includes(currentDate);
     });
     const removeDuplicates = (originalArray, p) => {
       const newArray = [];
       const lookupObject = {};
-
       for (let i in originalArray) {
         lookupObject[originalArray[i][p]] = originalArray[i];
       }
-
       for (let i in lookupObject) {
         newArray.push(lookupObject[i]);
       }
