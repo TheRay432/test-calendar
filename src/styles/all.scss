@@ -1,3 +1,6 @@
+$color-yellow: #ff7800;
+$color-green: #1c9c9d;
+$color-red: #e10500;
 *,
 ::after,
 ::before {
@@ -18,7 +21,7 @@ html {
 .month {
   display: flex;
   height: 5rem;
-  background-color: gray;
+  background-color: #ede9dd;
   text-align: center;
   & h1 {
     font-size: 3rem;
@@ -68,6 +71,7 @@ html {
   width: 100%;
   align-items: center;
   border-top: 1px solid gray;
+  border-bottom: 1px solid rgb(207, 205, 205);
   height: 5rem;
   & div {
     width: calc(70rem / 7);
@@ -75,36 +79,71 @@ html {
   }
 }
 .days {
-  background-color: gray;
+  background-color: #ede9dd;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   & div {
     width: calc(70rem / 7);
-    height: 10rem;
-    padding: 5px 5px;
-    text-align: left;
+    min-height: 93px;
     background-color: white;
-    border: 1px solid gray;
-    border-right: none;
+    border: 1px solid rgb(194, 191, 191);
+
+    border-top: transparent 1px solid;
+    border-right: transparent 1px solid;
 
     cursor: pointer;
     &:hover {
       opacity: 0.5;
-      background-color: rgb(174, 174, 67);
+      background-color: rgb(244, 244, 123);
     }
   }
 }
-.prev-date,
-.next-date {
+.days div.prev-date,
+.days div.next-date {
+  border: none;
   opacity: 0.5;
-  background-color: transparent;
+  background-color: #f8f8f8;
 }
 .divAcitive {
   background-color: red;
 }
-.divFlex {
+.days div.divFlex {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: flex-start;
+  &.active {
+    border: 2px solid green;
+  }
+  & p {
+    padding: 2px 2px;
+  }
+}
+.order {
+  color: $color-yellow;
+  font-weight: bold;
+}
+.alternate {
+  color: $color-green;
+  font-weight: bold;
+}
+.full {
+  color: gray;
+  font-weight: bold;
+}
+.red {
+  color: $color-red;
+  font-weight: bold;
+}
+.tip {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 40px;
+  color: #fff;
+  padding: 0 3px;
+  text-align: center;
+  height: 20px;
+  background-color: #fe8400;
 }

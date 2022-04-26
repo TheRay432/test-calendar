@@ -23,7 +23,7 @@ html {
   display: -ms-flexbox;
   display: flex;
   height: 5rem;
-  background-color: gray;
+  background-color: #ede9dd;
   text-align: center;
 }
 
@@ -99,6 +99,7 @@ html {
       -ms-flex-align: center;
           align-items: center;
   border-top: 1px solid gray;
+  border-bottom: 1px solid #cfcdcd;
   height: 5rem;
 }
 
@@ -108,7 +109,7 @@ html {
 }
 
 .days {
-  background-color: gray;
+  background-color: #ede9dd;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -119,34 +120,35 @@ html {
 
 .days div {
   width: calc(70rem / 7);
-  height: 10rem;
-  padding: 5px 5px;
-  text-align: left;
+  min-height: 93px;
   background-color: white;
-  border: 1px solid gray;
-  border-right: none;
+  border: 1px solid #c2bfbf;
+  border-top: transparent 1px solid;
+  border-right: transparent 1px solid;
   cursor: pointer;
 }
 
 .days div:hover {
   opacity: 0.5;
-  background-color: #aeae43;
+  background-color: #f4f47b;
 }
 
-.prev-date,
-.next-date {
+.days div.prev-date,
+.days div.next-date {
+  border: none;
   opacity: 0.5;
-  background-color: transparent;
+  background-color: #f8f8f8;
 }
 
 .divAcitive {
   background-color: red;
 }
 
-.divFlex {
+.days div.divFlex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -154,5 +156,45 @@ html {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+}
+
+.days div.divFlex.active {
+  border: 2px solid green;
+}
+
+.days div.divFlex p {
+  padding: 2px 2px;
+}
+
+.order {
+  color: #ff7800;
+  font-weight: bold;
+}
+
+.alternate {
+  color: #1c9c9d;
+  font-weight: bold;
+}
+
+.full {
+  color: gray;
+  font-weight: bold;
+}
+
+.red {
+  color: #e10500;
+  font-weight: bold;
+}
+
+.tip {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 40px;
+  color: #fff;
+  padding: 0 3px;
+  text-align: center;
+  height: 20px;
+  background-color: #fe8400;
 }
 /*# sourceMappingURL=all.css.map */

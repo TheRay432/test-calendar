@@ -10,6 +10,33 @@ function App() {
   const [nowArr, setNowvArr] = useState(null);
   const [nextArr, setNextArr] = useState(null);
   const [currentDate, setCurrentDate] = useState("2017/05");
+
+  const dealPrevOrNext = (dealState) => {
+    const years = currentDate.split("/")[0];
+    const months = currentDate.split("/")[1];
+    let numMonth = parseInt(months);
+    switch (dealState) {
+      case "prev":
+        if (numMonth > 1) {
+          numMonth -= 1;
+        }
+        break;
+      case "next":
+        if (numMonth < 12) {
+          numMonth += 1;
+        }
+        break;
+      default:
+        break;
+    }
+    let strMonth = "";
+    if (numMonth < 10) {
+      strMonth = "0" + numMonth;
+    } else {
+      strMonth = numMonth;
+    }
+    setCurrentDate(`${years}/${strMonth}`);
+  };
   const getDateData = async () => {
     /* const months = parseInt(month); */
     const years = currentDate.split("/")[0];
@@ -21,7 +48,7 @@ function App() {
     const fileterData = data.filter((item) => {
       return item.date.includes(currentDate);
     });
-    console.log(fileterData);
+
     const removeDuplicates = (originalArray, p) => {
       const newArray = [];
       const lookupObject = {};
@@ -84,24 +111,10 @@ function App() {
     setNextArr([...xArr]);
   };
   const handlePrevMonth = () => {
-    myDate.setMonth(myDate.getMonth() - 1);
-    getDateData(myDate.getMonth());
+    dealPrevOrNext("prev");
   };
   const handleNextMonth = () => {
-    const years = currentDate.split("/")[0];
-    const months = currentDate.split("/")[1];
-    const numMonth = parseInt(months) + 1;
-    let strMonth = "";
-    if (numMonth < 10) {
-      strMonth = "0" + numMonth;
-    } else {
-      strMonth = numMonth;
-    }
-    setCurrentDate(`${years}/${strMonth}`);
-
-    // getDateData();
-    // myDate.setMonth(myDate.getMonth() + 1);
-    // getDateData(myDate.getMonth());
+    dealPrevOrNext("next");
   };
 
   useEffect(() => {
