@@ -1,9 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import "./styles/all.css";
 import Days from "./components/Days";
+import Month from "./components/Month";
 function App() {
   const [myDate, setMyDate] = useState(new Date());
   const [prevArr, setPrevArr] = useState(null);
@@ -38,17 +37,15 @@ function App() {
     setCurrentDate(`${years}/${strMonth}`);
   };
   const getDateData = async () => {
-    /* const months = parseInt(month); */
     const years = currentDate.split("/")[0];
     const months = currentDate.split("/")[1];
+
     const numMonth = parseInt(months) - 1;
-    console.log(years, numMonth);
     const res = await axios.get("data1.json");
     const data = res.data;
     const fileterData = data.filter((item) => {
       return item.date.includes(currentDate);
     });
-
     const removeDuplicates = (originalArray, p) => {
       const newArray = [];
       const lookupObject = {};
@@ -110,36 +107,14 @@ function App() {
     }
     setNextArr([...xArr]);
   };
-  const handlePrevMonth = () => {
-    dealPrevOrNext("prev");
-  };
-  const handleNextMonth = () => {
-    dealPrevOrNext("next");
-  };
 
   useEffect(() => {
     getDateData();
   }, [currentDate]);
   return (
     <div className="calendar">
-      <div className="month">
-        <div className="icon" onClick={handlePrevMonth}>
-          <FontAwesomeIcon icon={faAngleLeft} />
-        </div>
-        <div className="date active">
-          <h2>2017 5月</h2>
-        </div>
-        <div className="date">
-          <h2>2017 6月</h2>
-        </div>
-        <div className="date ">
-          <h2>2017 7月</h2>
-        </div>
+      <Month setCurrentDate={setCurrentDate} currentDate={currentDate} />
 
-        <div className="icon" onClick={handleNextMonth}>
-          <FontAwesomeIcon icon={faAngleRight} />
-        </div>
-      </div>
       <div className="weekdays">
         <div>星期日</div>
         <div>星期一</div>
