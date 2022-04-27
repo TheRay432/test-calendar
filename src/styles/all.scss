@@ -148,3 +148,11 @@ html {
   height: 20px;
   background-color: #fe8400;
 }
+.tabs {
+  display: flex;
+  flex-direction: column;
+}
+.noData {
+  font-size: 12px;
+  color: #24a07c;
+}

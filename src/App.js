@@ -8,8 +8,9 @@ function App() {
   const [prevArr, setPrevArr] = useState(null);
   const [nowArr, setNowvArr] = useState(null);
   const [nextArr, setNextArr] = useState(null);
-  const [currentDate, setCurrentDate] = useState("2016/01");
+  const [currentDate, setCurrentDate] = useState("");
   const [allYears, setAllYears] = useState([]);
+  const [jsonData, setJsonData] = useState([]);
 
   const setAllyearsArr = (data) => {
     const sortArr = data.sort((a, b) => {
@@ -26,17 +27,17 @@ function App() {
         .map((u, idx) => start + idx);
     }
     const continueYears = range(parseInt(a[0]), parseInt(a[a.length - 1]));
+    setAllYears(`${continueYears[0]}/01`);
     setAllYears([...continueYears]);
   };
-  const getDateData = async () => {
+  const getDateData = (data) => {
     const years = currentDate.split("/")[0];
     const months = currentDate.split("/")[1];
 
     const numMonth = parseInt(months) - 1;
-    const res = await axios.get("data1.json");
-    const { data } = res;
 
-    setAllyearsArr(data);
+    setJsonData(data);
+
     const result = data.map((o) => {
       if (o.state) {
         return {
@@ -110,9 +111,22 @@ function App() {
     }
     setNextArr([...xArr]);
   };
+  const apiConect = async () => {
+    const res = await axios.get("data1.json");
+    const { data } = res;
+    getDateData(data);
+  };
+  const oneFuc = async () => {
+    const res = await axios.get("data1.json");
+    const { data } = res;
+    setAllyearsArr(data);
+  };
+  useEffect(() => {
+    oneFuc();
+  }, []);
 
   useEffect(() => {
-    getDateData();
+    apiConect();
   }, [currentDate]);
   return (
     <div className="calendar">
@@ -122,6 +136,7 @@ function App() {
             setCurrentDate={setCurrentDate}
             currentDate={currentDate}
             allYears={allYears}
+            jsonData={jsonData}
           />
 
           <div className="weekdays">

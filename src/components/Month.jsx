@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import Tabs from "./Tabs";
-const Month = ({ currentDate, setCurrentDate, allYears }) => {
+const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
   const [yearMonthArr, setYearsMonthArr] = useState([]);
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(3);
@@ -10,47 +10,9 @@ const Month = ({ currentDate, setCurrentDate, allYears }) => {
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(3);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
   const [pages, setPages] = useState([]);
-  // const dealPrevOrNext = (dealState) => {
-  //   const years = currentDate.split("/")[0];
-  //   const months = currentDate.split("/")[1];
-  //   let numMonth = parseInt(months);
-  //   let numYears = parseInt(years);
-  //   switch (dealState) {
-  //     case "prev":
-  //       if (numMonth > 1) {
-  //         numMonth -= 1;
-  //       } else {
-  //         numYears -= 1;
-  //         numMonth = 12;
-  //       }
-  //       break;
-  //     case "next":
-  //       if (numMonth < 12) {
-  //         numMonth += 1;
-  //       } else {
-  //         numYears += 1;
-  //         numMonth = 1;
-  //       }
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  //   let strMonth = "";
-  //   if (numMonth < 10) {
-  //     strMonth = "0" + numMonth;
-  //   } else {
-  //     strMonth = numMonth;
-  //   }
-  //   setCurrentDate(`${numYears}/${strMonth}`);
-  // };
-  // const handlePrevMonth = () => {
-  //   dealPrevOrNext("prev");
-  // };
-  // const handleNextMonth = () => {
-  //   dealPrevOrNext("next");
-  // };
+
   const handleNextbtn = () => {
-    if (currentPage >= 72) {
+    if (currentPage >= yearMonthArr.length) {
       return;
     }
     setCurrentDate(pages[currentPage]);
@@ -87,7 +49,6 @@ const Month = ({ currentDate, setCurrentDate, allYears }) => {
         yearMonthArr.push(`${item}/${item2}`);
       });
     });
-    console.log(yearMonthArr);
     const a = [];
     for (let i = 1; i <= yearMonthArr.length; i++) {
       a.push(yearMonthArr[i - 1]);
@@ -112,6 +73,7 @@ const Month = ({ currentDate, setCurrentDate, allYears }) => {
                 setcurrentPage={setcurrentPage}
                 index={i + 1}
                 setCurrentDate={setCurrentDate}
+                jsonData={jsonData}
               />
             );
           } else {
