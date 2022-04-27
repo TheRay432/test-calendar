@@ -39,7 +39,7 @@ html {
 }
 
 .month .icon {
-  width: 2rem;
+  width: 3rem;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -55,7 +55,7 @@ html {
 }
 
 .month svg {
-  font-size: 1.5rem;
+  font-size: 3rem;
   cursor: pointer;
 }
 
@@ -166,10 +166,6 @@ html {
 
 .days div.divFlex p {
   padding: 2px 2px;
-}
-
-.days div.divFlex:nth-child(1) {
-  background-color: red;
 }
 
 .order {

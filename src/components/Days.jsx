@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import OneDay from "./OneDay";
 
 const Days = ({ prevArr, nowArr, nextArr }) => {
   const [divActive, setDivActive] = useState({ index: 0, state: false });
+
   return (
     <div className="days">
       {/*當周上個月佔幾天 */}

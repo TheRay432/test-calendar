@@ -8,8 +8,26 @@ function App() {
   const [prevArr, setPrevArr] = useState(null);
   const [nowArr, setNowvArr] = useState(null);
   const [nextArr, setNextArr] = useState(null);
-  const [currentDate, setCurrentDate] = useState("2017/05");
+  const [currentDate, setCurrentDate] = useState("2016/01");
+  const [allYears, setAllYears] = useState([]);
 
+  const setAllyearsArr = (data) => {
+    const sortArr = data.sort((a, b) => {
+      return b.date < a.date ? 1 : -1;
+    });
+    const test = [];
+    sortArr.forEach((item) => {
+      test.push(item.date.split("/")[0]);
+    });
+    const a = [...new Set(test)];
+    function range(start, end) {
+      return Array(end - start + 1)
+        .fill()
+        .map((u, idx) => start + idx);
+    }
+    const continueYears = range(parseInt(a[0]), parseInt(a[a.length - 1]));
+    setAllYears([...continueYears]);
+  };
   const getDateData = async () => {
     const years = currentDate.split("/")[0];
     const months = currentDate.split("/")[1];
@@ -17,6 +35,8 @@ function App() {
     const numMonth = parseInt(months) - 1;
     const res = await axios.get("data1.json");
     const { data } = res;
+
+    setAllyearsArr(data);
     const result = data.map((o) => {
       if (o.state) {
         return {
@@ -46,7 +66,6 @@ function App() {
       return newArray;
     };
     const notSameFilterData = removeDuplicates(fileterData, "date");
-
     const pArr = [];
     const lArr = [];
     const xArr = [];
@@ -75,7 +94,6 @@ function App() {
       pArr.push(prevDay - x + 1);
     }
     setPrevArr([...pArr]);
-
     for (let i = 1; i <= lastDay; i++) {
       notSameFilterData.forEach((item) => {
         if (i === parseInt(item.date.split("/")[2])) {
@@ -87,7 +105,6 @@ function App() {
       }
     }
     setNowvArr([...lArr]);
-
     for (let j = 1; j <= nextDays; j++) {
       xArr.push(j);
     }
@@ -99,18 +116,26 @@ function App() {
   }, [currentDate]);
   return (
     <div className="calendar">
-      <Month setCurrentDate={setCurrentDate} currentDate={currentDate} />
+      {allYears.length > 0 && (
+        <>
+          <Month
+            setCurrentDate={setCurrentDate}
+            currentDate={currentDate}
+            allYears={allYears}
+          />
 
-      <div className="weekdays">
-        <div>星期日</div>
-        <div>星期一</div>
-        <div>星期二</div>
-        <div>星期三</div>
-        <div>星期四</div>
-        <div>星期五</div>
-        <div>星期六</div>
-      </div>
-      <Days prevArr={prevArr} nowArr={nowArr} nextArr={nextArr} />
+          <div className="weekdays">
+            <div>星期日</div>
+            <div>星期一</div>
+            <div>星期二</div>
+            <div>星期三</div>
+            <div>星期四</div>
+            <div>星期五</div>
+            <div>星期六</div>
+          </div>
+          <Days prevArr={prevArr} nowArr={nowArr} nextArr={nextArr} />
+        </>
+      )}
     </div>
   );
 }

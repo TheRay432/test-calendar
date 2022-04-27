@@ -33,7 +33,7 @@ html {
     font-size: 1.6rem;
   }
   & .icon {
-    width: 2rem;
+    width: 3rem;
     height: 100%;
     display: flex;
     align-items: center;
@@ -42,7 +42,7 @@ html {
     cursor: pointer;
   }
   & svg {
-    font-size: 1.5rem;
+    font-size: 3rem;
     cursor: pointer;
   }
   & .date {
@@ -119,9 +119,6 @@ html {
   }
   & p {
     padding: 2px 2px;
-  }
-  &:nth-child(1) {
-    background-color: red;
   }
 }
 .order {
