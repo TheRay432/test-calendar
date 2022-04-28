@@ -36,31 +36,25 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
   };
   useEffect(() => {
     const monthArr = [];
-    const removeDuplicates = (originalArray, p) => {
-      const newArray = [];
-      const lookupObject = {};
-      for (let i in originalArray) {
-        lookupObject[originalArray[i][p]] = originalArray[i];
-      }
-      for (let i in lookupObject) {
-        newArray.push(lookupObject[i]);
-      }
-      return newArray;
-    };
-    const notSameFilterData = removeDuplicates(jsonData, "date");
+
     for (let i = 1; i <= 12; i++) {
       if (i < 10) {
         i = "0" + i;
       }
       monthArr.push(i);
     }
+    let check = false;
     allYears.forEach((item, i) => {
       monthArr.map((item2) => {
-        if (i === 0) {
-          notSameFilterData.some((item3) => {
+        console.log(check);
+        if (!check) {
+          jsonData.some((item3) => {
             if (item3.date.includes(`${item}/${item2}`)) {
               yearMonthArr.push(`${item}/${item2}`);
+              check = true;
               return true;
+            } else {
+              return false;
             }
           });
         } else {

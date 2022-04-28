@@ -2926,5 +2926,13 @@
     "availableVancancy": 98,
     "totalVacnacy": 461,
     "status": "截止"
+  },
+  {
+    "guaranteed": true,
+    "date": "2015/04/16",
+    "price": 99593,
+    "availableVancancy": 98,
+    "totalVacnacy": 461,
+    "status": "截止"
   }
 ]
