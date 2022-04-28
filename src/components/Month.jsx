@@ -5,7 +5,6 @@ import Tabs from "./Tabs";
 const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
   const [yearMonthArr, setYearsMonthArr] = useState([]);
   const [currentPage, setcurrentPage] = useState(1);
-  const [itemsPerPage, setitemsPerPage] = useState(3);
   const [pageNumberLimit, setpageNumberLimit] = useState(3);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(3);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
@@ -54,7 +53,7 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
       a.push(yearMonthArr[i - 1]);
     }
     setPages([...a]);
-    setCurrentDate(a[0]);
+    // setCurrentDate(a[0]);
   }, []);
 
   return (
