@@ -21,6 +21,8 @@ function App() {
     const sortArr = data.sort((a, b) => {
       return b.date < a.date ? 1 : -1;
     });
+    const firstYears = sortArr[0].date.split("/")[0];
+    const firstMonth = sortArr[0].date.split("/")[1];
     const test = [];
     sortArr.forEach((item) => {
       test.push(item.date.split("/")[0]);
@@ -28,7 +30,9 @@ function App() {
     const a = [...new Set(test)];
 
     const continueYears = range(parseInt(a[0]), parseInt(a[a.length - 1]));
-    setCurrentDate(`${continueYears[0]}/01`);
+
+    setCurrentDate(`${firstYears}/${firstMonth}`);
+    // setCurrentDate(`${continueYears[0]}/01`);
     setAllYears([...continueYears]);
   };
   const removeDuplicates = (originalArray, p) => {
@@ -135,12 +139,14 @@ function App() {
     <div className="calendar">
       {allYears.length > 0 && (
         <>
-          <Month
-            setCurrentDate={setCurrentDate}
-            currentDate={currentDate}
-            allYears={allYears}
-            jsonData={jsonData}
-          />
+          {jsonData.length > 0 && (
+            <Month
+              setCurrentDate={setCurrentDate}
+              currentDate={currentDate}
+              allYears={allYears}
+              jsonData={jsonData}
+            />
+          )}
 
           <div className="weekdays">
             <div>星期日</div>

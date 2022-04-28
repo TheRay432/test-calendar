@@ -14,9 +14,7 @@ html {
 }
 
 .calendar {
-  width: 70rem;
-  box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
-  margin: 1rem 20%;
+  width: 100%;
 }
 .month {
   display: flex;
@@ -47,7 +45,7 @@ html {
   }
   & .date {
     margin-top: 5px;
-    flex-basis: 35%;
+    flex-basis: 33%;
     background-color: transparent;
     text-align: center;
     display: flex;
@@ -74,7 +72,7 @@ html {
   border-bottom: 1px solid rgb(207, 205, 205);
   padding: 5px 0;
   & div {
-    width: calc(70rem / 7);
+    width: calc(100% / 7);
     text-align: center;
     font-weight: bold;
     font-size: 14px;
@@ -86,7 +84,7 @@ html {
   display: flex;
   flex-wrap: wrap;
   & div {
-    width: calc(70rem / 7);
+    width: calc(100% / 7);
     min-height: 93px;
     background-color: white;
     border: 1px solid rgb(194, 191, 191);

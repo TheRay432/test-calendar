@@ -12,10 +12,7 @@ html {
 }
 
 .calendar {
-  width: 70rem;
-  -webkit-box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
-          box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
-  margin: 1rem 20%;
+  width: 100%;
 }
 
 .month {
@@ -61,8 +58,8 @@ html {
 
 .month .date {
   margin-top: 5px;
-  -ms-flex-preferred-size: 35%;
-      flex-basis: 35%;
+  -ms-flex-preferred-size: 33%;
+      flex-basis: 33%;
   background-color: transparent;
   text-align: center;
   display: -webkit-box;
@@ -103,7 +100,7 @@ html {
 }
 
 .weekdays div {
-  width: calc(70rem / 7);
+  width: calc(100% / 7);
   text-align: center;
   font-weight: bold;
   font-size: 14px;
@@ -120,7 +117,7 @@ html {
 }
 
 .days div {
-  width: calc(70rem / 7);
+  width: calc(100% / 7);
   min-height: 93px;
   background-color: white;
   border: 1px solid #c2bfbf;
