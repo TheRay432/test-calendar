@@ -7,11 +7,19 @@ const Tabs = ({
   setcurrentPage,
   setCurrentDate,
   jsonData,
+  setPrevState,
+  setNextState,
+  setHidden,
+  setCurrentPage,
 }) => {
   const [noDataState, setNodataState] = useState(true);
   const handleClick = () => {
     setcurrentPage(index);
     setCurrentDate(number);
+    setPrevState(true);
+    setNextState(true);
+    setHidden(true);
+    setCurrentPage(1);
   };
   useEffect(() => {
     jsonData.forEach((item) => {

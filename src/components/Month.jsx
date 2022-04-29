@@ -112,6 +112,10 @@ const Month = ({
                 index={i + 1}
                 setCurrentDate={setCurrentDate}
                 jsonData={jsonData}
+                setPrevState={setPrevState}
+                setNextState={setNextState}
+                setHidden={setHidden}
+                setCurrentPage={setCurrentPage}
               />
             );
           } else {
