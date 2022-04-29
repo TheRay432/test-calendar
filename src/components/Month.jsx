@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+
 import Tabs from "./Tabs";
-const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
+const Month = ({
+  currentDate,
+  setCurrentDate,
+  allYears,
+  jsonData,
+  setPrevState,
+  setNextState,
+  setHidden,
+  setCurrentPage,
+}) => {
   const [yearMonthArr, setYearsMonthArr] = useState([]);
   const [currentPage, setcurrentPage] = useState(1);
   const [pageNumberLimit, setpageNumberLimit] = useState(3);
@@ -12,6 +20,10 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
 
   const handleNextbtn = (e) => {
     e.preventDefault();
+    setPrevState(true);
+    setNextState(true);
+    setHidden(true);
+    setCurrentPage(1);
     if (currentPage >= yearMonthArr.length) {
       return;
     }
@@ -26,6 +38,10 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
 
   const handlePrevbtn = (e) => {
     e.preventDefault();
+    setPrevState(true);
+    setNextState(true);
+    setHidden(true);
+    setCurrentPage(1);
     if (currentPage <= 1) {
       return;
     }
@@ -83,9 +99,6 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
 
   return (
     <div className="month">
-      {/* <div className="icon" onClick={handlePrevbtn}>
-        <FontAwesomeIcon icon={faAngleLeft} />
-      </div> */}
       <a href="#" className="prev" onClick={handlePrevbtn}></a>
       {pages.length > 0 &&
         pages.map((number, i) => {
@@ -106,9 +119,6 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
           }
         })}
 
-      {/* <div className="icon rightIcon" onClick={handleNextbtn}>
-        <FontAwesomeIcon icon={faAngleRight} />
-      </div> */}
       <a href="#" className="next rightIcon" onClick={handleNextbtn}></a>
     </div>
   );

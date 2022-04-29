@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "./styles/all.css";
 import Days from "./components/Days";
 import Month from "./components/Month";
+import List from "./components/List";
 function App() {
   const [myDate, setMyDate] = useState(new Date());
   const [prevArr, setPrevArr] = useState(null);
@@ -11,6 +12,12 @@ function App() {
   const [currentDate, setCurrentDate] = useState("");
   const [allYears, setAllYears] = useState([]);
   const [jsonData, setJsonData] = useState([]);
+  const [listMode, setListMode] = useState(false);
+  const [listNotSameData, setListNotSameData] = useState([]);
+  const [prevState, setPrevState] = useState(true);
+  const [nextState, setNextState] = useState(true);
+  const [hidden, setHidden] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const range = (start, end) => {
     return Array(end - start + 1)
@@ -75,7 +82,11 @@ function App() {
       });
 
       const notSameFilterData = removeDuplicates(fileterData, "date");
+      const toUpnotSameFilterData = notSameFilterData.sort((a, b) => {
+        return b.date < a.date ? 1 : -1;
+      });
 
+      setListNotSameData([...toUpnotSameFilterData]);
       myDate.setFullYear(years);
       myDate.setMonth(numMonth);
       myDate.setDate(1);
@@ -128,6 +139,9 @@ function App() {
     const { data } = res;
     setAllyearsArr(data);
   };
+  const hnadleMode = () => {
+    setListMode(!listMode);
+  };
   useEffect(() => {
     oneFuc();
   }, []);
@@ -136,30 +150,58 @@ function App() {
     apiConect();
   }, [currentDate]);
   return (
-    <div className="calendar">
-      {allYears.length > 0 && (
-        <>
-          {jsonData.length > 0 && (
+    <div style={{ width: "579px" }}>
+      <span className="ic-ln toollist" onClick={hnadleMode}>
+        切換列表顯示
+      </span>
+      <div className="calendar">
+        {allYears.length > 0 && jsonData.length > 0 && (
+          <>
             <Month
               setCurrentDate={setCurrentDate}
               currentDate={currentDate}
               allYears={allYears}
               jsonData={jsonData}
+              setPrevState={setPrevState}
+              setNextState={setNextState}
+              setHidden={setHidden}
+              setCurrentPage={setCurrentPage}
             />
-          )}
 
-          <div className="weekdays">
-            <div>星期日</div>
-            <div>星期一</div>
-            <div>星期二</div>
-            <div>星期三</div>
-            <div>星期四</div>
-            <div>星期五</div>
-            <div>星期六</div>
-          </div>
-          <Days prevArr={prevArr} nowArr={nowArr} nextArr={nextArr} />
-        </>
-      )}
+            <div className={listMode ? "weekdays d-no" : "weekdays"}>
+              <div>星期日</div>
+              <div>星期一</div>
+              <div>星期二</div>
+              <div>星期三</div>
+              <div>星期四</div>
+              <div>星期五</div>
+              <div>星期六</div>
+            </div>
+            {/* 月曆(日曆模式) */}
+            <Days
+              prevArr={prevArr}
+              nowArr={nowArr}
+              nextArr={nextArr}
+              listMode={listMode}
+            />
+            {/* 月曆(列表模式) */}
+            {listNotSameData.length >= 0 && (
+              <List
+                listMode={listMode}
+                listNotSameData={listNotSameData}
+                setPrevState={setPrevState}
+                setNextState={setNextState}
+                setHidden={setHidden}
+                setCurrentPage={setCurrentPage}
+                hidden={hidden}
+                currentPage={currentPage}
+                prevState={prevState}
+                nextState={nextState}
+              />
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 }
