@@ -35,22 +35,6 @@ html {
   font-size: 1.6rem;
 }
 
-.month .icon {
-  width: 3rem;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  color: red;
-  cursor: pointer;
-}
-
 .month svg {
   font-size: 3rem;
   cursor: pointer;
@@ -58,8 +42,8 @@ html {
 
 .month .date {
   margin-top: 5px;
-  -ms-flex-preferred-size: 33%;
-      flex-basis: 33%;
+  -ms-flex-preferred-size: 32%;
+      flex-basis: 32%;
   background-color: transparent;
   text-align: center;
   display: -webkit-box;
@@ -72,19 +56,22 @@ html {
       -ms-flex-pack: center;
           justify-content: center;
   cursor: pointer;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #666;
+  font-weight: 600;
 }
 
 .month .date.active {
   background-color: white;
 }
 
-.month .date.active h2 {
-  color: red;
+.month .date.active span {
+  color: #e10500;
 }
 
-.month .next-icon {
-  margin-left: auto;
-  cursor: pointer;
+.month .date.active span.noData {
+  color: #24a07c;
 }
 
 .rightIcon {
@@ -100,14 +87,16 @@ html {
       -ms-flex-align: center;
           align-items: center;
   border-bottom: 1px solid #cfcdcd;
-  padding: 5px 0;
 }
 
 .weekdays div {
   width: calc(100% / 7);
   text-align: center;
-  font-weight: bold;
   font-size: 14px;
+  color: #666;
+  line-height: 30px;
+  border-top: #f4f4f4 1px solid;
+  font-weight: bolder;
 }
 
 .days {
@@ -140,6 +129,7 @@ html {
   border: none;
   opacity: 0.5;
   background-color: #f8f8f8;
+  cursor: auto;
 }
 
 .divAcitive {
@@ -158,6 +148,7 @@ html {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  padding: 0 3px;
 }
 
 .days div.divFlex.active {
@@ -165,8 +156,26 @@ html {
   background-color: #fff9e3;
 }
 
-.days div.divFlex p {
-  padding: 2px 2px;
+.days div.divFlex span {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: bold;
+  color: #444;
+}
+
+.days div.divFlex span.red {
+  color: #e10500;
+}
+
+.days div.divFlex section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-top: 5px;
 }
 
 .order {
@@ -184,17 +193,12 @@ html {
   font-weight: bold;
 }
 
-.red {
-  color: #e10500;
-  font-weight: bold;
-}
-
 .tip {
   position: absolute;
   top: -1px;
   right: -1px;
   width: 40px;
-  color: #fff;
+  color: #fff !important;
   padding: 0 3px;
   text-align: center;
   height: 20px;
@@ -212,7 +216,60 @@ html {
 }
 
 .noData {
-  font-size: 12px;
+  font-size: 14px;
   color: #24a07c;
+  display: block;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.month a {
+  width: 20px;
+  position: relative;
+  color: transparent;
+  display: inline-block;
+}
+
+.month a::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+a.prev {
+  height: 50px;
+  background-color: #ede9dd;
+}
+
+a.prev::before {
+  left: -1px;
+  border-width: 7px 7px 7px 0;
+  border-color: transparent #e10500 transparent transparent;
+}
+
+a.next {
+  background-color: #ede9dd;
+  height: 50px;
+}
+
+a.next::before {
+  right: -1px;
+  border-width: 7px 0px 7px 7px;
+  border-color: transparent transparent transparent #e10500;
+}
+
+.number {
+  top: 2px;
+  lef: 2px;
+  color: #444;
+  font-weight: bold;
 }
 /*# sourceMappingURL=all.css.map */

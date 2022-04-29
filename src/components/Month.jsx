@@ -10,7 +10,8 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
   const [pages, setPages] = useState([]);
 
-  const handleNextbtn = () => {
+  const handleNextbtn = (e) => {
+    e.preventDefault();
     if (currentPage >= yearMonthArr.length) {
       return;
     }
@@ -23,7 +24,8 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
     }
   };
 
-  const handlePrevbtn = () => {
+  const handlePrevbtn = (e) => {
+    e.preventDefault();
     if (currentPage <= 1) {
       return;
     }
@@ -39,7 +41,6 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
     const sortArr = jsonData.sort((a, b) => {
       return b.date < a.date ? 1 : -1;
     });
-    console.log(sortArr);
 
     for (let i = 1; i <= 12; i++) {
       if (i < 10) {
@@ -82,9 +83,10 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
 
   return (
     <div className="month">
-      <div className="icon" onClick={handlePrevbtn}>
+      {/* <div className="icon" onClick={handlePrevbtn}>
         <FontAwesomeIcon icon={faAngleLeft} />
-      </div>
+      </div> */}
+      <a href="#" className="prev" onClick={handlePrevbtn}></a>
       {pages.length > 0 &&
         pages.map((number, i) => {
           if (i + 1 < maxPageNumberLimit + 1 && i + 1 > minPageNumberLimit) {
@@ -104,9 +106,10 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
           }
         })}
 
-      <div className="icon rightIcon" onClick={handleNextbtn}>
+      {/* <div className="icon rightIcon" onClick={handleNextbtn}>
         <FontAwesomeIcon icon={faAngleRight} />
-      </div>
+      </div> */}
+      <a href="#" className="next rightIcon" onClick={handleNextbtn}></a>
     </div>
   );
 };

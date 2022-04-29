@@ -27,10 +27,10 @@ const Tabs = ({
       className={currentPage === index ? "date active" : "date"}
     >
       <div className="tabs">
-        <p>
+        <span>
           {number.split("/")[0]} {parseInt(number.split("/")[1])}月
-        </p>
-        {noDataState && <p className="noData">無出發日</p>}
+        </span>
+        {noDataState && <span className="noData">無出發日</span>}
       </div>
     </div>
   );

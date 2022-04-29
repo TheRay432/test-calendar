@@ -41,15 +41,17 @@ const OneDay = ({ item, index, setDivActive, divActive }) => {
       }
       onClick={() => handClick()}
     >
-      <p>{index + 1}</p>
+      <p className="number">{index + 1}</p>
 
       {JSON.stringify(item) !== "{}" && (
         <>
           {item.guaranteed && <span className="tip">成行</span>}
-          <p className={divState}>{item.status}</p>
-          <p>可賣:{item.availableVancancy}</p>
-          <p>席次:{item.totalVacnacy}</p>
-          <p className="red">${item.price.toLocaleString()}</p>
+          <section>
+            <span className={divState}>{item.status}</span>
+            <span>可賣:{item.availableVancancy}</span>
+            <span>席次:{item.totalVacnacy}</span>
+            <span className="red">${item.price.toLocaleString()}</span>
+          </section>
         </>
       )}
     </div>
