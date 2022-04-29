@@ -36,6 +36,10 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
   };
   useEffect(() => {
     const monthArr = [];
+    const sortArr = jsonData.sort((a, b) => {
+      return b.date < a.date ? 1 : -1;
+    });
+    console.log(sortArr);
 
     for (let i = 1; i <= 12; i++) {
       if (i < 10) {
@@ -44,11 +48,13 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
       monthArr.push(i);
     }
     let check = false;
+    let lastcheck = false;
     allYears.forEach((item, i) => {
-      monthArr.map((item2) => {
-        console.log(check);
-        if (!check) {
-          jsonData.some((item3) => {
+      monthArr.forEach((item2) => {
+        if (lastcheck) {
+          return;
+        } else if (!check) {
+          sortArr.some((item3) => {
             if (item3.date.includes(`${item}/${item2}`)) {
               yearMonthArr.push(`${item}/${item2}`);
               check = true;
@@ -59,6 +65,9 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
           });
         } else {
           yearMonthArr.push(`${item}/${item2}`);
+          if (jsonData[jsonData.length - 1].date.includes(`${item}/${item2}`)) {
+            lastcheck = true;
+          }
         }
       });
     });
@@ -95,7 +104,7 @@ const Month = ({ currentDate, setCurrentDate, allYears, jsonData }) => {
           }
         })}
 
-      <div className="icon" onClick={handleNextbtn}>
+      <div className="icon rightIcon" onClick={handleNextbtn}>
         <FontAwesomeIcon icon={faAngleRight} />
       </div>
     </div>

@@ -87,6 +87,10 @@ html {
   cursor: pointer;
 }
 
+.rightIcon {
+  margin-left: auto;
+}
+
 .weekdays {
   display: -webkit-box;
   display: -ms-flexbox;
