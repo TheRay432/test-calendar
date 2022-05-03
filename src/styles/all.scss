@@ -238,8 +238,11 @@ a.next {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 16px;
+  font-size: 24px;
   color: #666;
+}
+.li-weekday {
+  font-size: 16px;
 }
 .li-middle {
   color: #666;
@@ -342,13 +345,30 @@ a.next {
 .hidden {
   display: none;
 }
-
-.ic-ln.toollist {
-  margin-left: 2rem;
-  cursor: pointer;
+.fz-md {
+  font-size: 16px;
+  text-decoration: none;
+  color: #0077b3;
+  font-weight: bold;
 }
+
+// .ic-ln.toollist {
+//   font-style: normal;
+//   font-weight: normal;
+//   font-variant: normal;
+//   text-transform: none;
+//   line-height: 1;
+//   -webkit-font-smoothing: antialiased;
+//   &::before {
+//     content: "\E634";
+//   }
+// }
 a:link,
 a:focus,
 a:active {
   -webkit-tap-highlight-color: transparent;
+}
+
+.list-active {
+  border: 1px solid #66bb3c;
 }

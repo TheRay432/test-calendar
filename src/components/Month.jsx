@@ -94,7 +94,6 @@ const Month = ({
       a.push(yearMonthArr[i - 1]);
     }
     setPages([...a]);
-    // setCurrentDate(a[0]);
   }, []);
 
   return (

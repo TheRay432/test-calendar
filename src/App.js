@@ -4,6 +4,8 @@ import "./styles/all.css";
 import Days from "./components/Days";
 import Month from "./components/Month";
 import List from "./components/List";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList, faCalendar } from "@fortawesome/free-solid-svg-icons";
 function App() {
   const [myDate, setMyDate] = useState(new Date());
   const [prevArr, setPrevArr] = useState(null);
@@ -139,7 +141,8 @@ function App() {
     const { data } = res;
     setAllyearsArr(data);
   };
-  const hnadleMode = () => {
+  const hnadleMode = (e) => {
+    e.preventDefault();
     setListMode(!listMode);
   };
   useEffect(() => {
@@ -151,9 +154,20 @@ function App() {
   }, [currentDate]);
   return (
     <div style={{ width: "579px" }}>
-      <span className="ic-ln toollist" onClick={hnadleMode}>
-        切換列表顯示
-      </span>
+      <a href="#" className="fz-md td-n" onClick={hnadleMode}>
+        {!listMode && (
+          <span className="ic-ln toollist">
+            <FontAwesomeIcon icon={faList} />
+            切換列表顯示
+          </span>
+        )}
+        {listMode && (
+          <span className="ic-ln toollist" onClick={hnadleMode}>
+            <FontAwesomeIcon icon={faCalendar} />
+            切換月曆顯示
+          </span>
+        )}
+      </a>
       <div className="calendar">
         {allYears.length > 0 && jsonData.length > 0 && (
           <>

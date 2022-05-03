@@ -317,8 +317,12 @@ a.next::before {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 16px;
+  font-size: 24px;
   color: #666;
+}
+
+.li-weekday {
+  font-size: 16px;
 }
 
 .li-middle {
@@ -451,14 +455,20 @@ a.next::before {
   display: none;
 }
 
-.ic-ln.toollist {
-  margin-left: 2rem;
-  cursor: pointer;
+.fz-md {
+  font-size: 16px;
+  text-decoration: none;
+  color: #0077b3;
+  font-weight: bold;
 }
 
 a:link,
 a:focus,
 a:active {
   -webkit-tap-highlight-color: transparent;
+}
+
+.list-active {
+  border: 1px solid #66bb3c;
 }
 /*# sourceMappingURL=all.css.map */

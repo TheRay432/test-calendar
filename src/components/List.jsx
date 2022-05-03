@@ -13,11 +13,14 @@ const List = ({
   prevState,
   nextState,
 }) => {
-  const handleNextBtn = () => {
+  const [active, setActive] = useState({ date: "", state: false });
+  const handleNextBtn = (e) => {
+    e.preventDefault();
     setHidden(!hidden);
     setCurrentPage((prevData) => prevData + 1);
   };
-  const handlePrevBtn = () => {
+  const handlePrevBtn = (e) => {
+    e.preventDefault();
     setCurrentPage((prevData) => prevData - 1);
     setHidden(!hidden);
   };
@@ -39,9 +42,25 @@ const List = ({
         {listNotSameData.length > 0 &&
           listNotSameData.map((item, i) => {
             if (i > 7) {
-              return <OneList hidden={hidden} item={item} key={item.date} />;
+              return (
+                <OneList
+                  hidden={hidden}
+                  item={item}
+                  key={item.date}
+                  active={active}
+                  setActive={setActive}
+                />
+              );
             } else {
-              return <OneList hidden={!hidden} item={item} key={item.date} />;
+              return (
+                <OneList
+                  hidden={!hidden}
+                  item={item}
+                  key={item.date}
+                  active={active}
+                  setActive={setActive}
+                />
+              );
             }
           })}
         {listNotSameData.length === 0 && (
@@ -55,7 +74,7 @@ const List = ({
       {listNotSameData.length > 8 && (
         <div className="pagecounter">
           <a
-            href="javescript:;"
+            href="#"
             className={prevState ? "previus v-hide" : "previus"}
             onClick={handlePrevBtn}
           >
@@ -70,7 +89,7 @@ const List = ({
             </span>
           </div>
           <a
-            href="javescript:;"
+            href="#"
             className={nextState ? "nextpage" : "nextpage v-hide"}
             onClick={handleNextBtn}
           >
